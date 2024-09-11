@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "20": "^1.0.0",
+    "@headlessui/react": "^2.1.6",
+    "@heroicons/react": "^2.1.5",
     "@mui/icons-material": "^6.0.2",
     "@reduxjs/toolkit": "^2.2.7",
     "@tinymce/tinymce-react": "^5.1.1",

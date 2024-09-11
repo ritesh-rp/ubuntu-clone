@@ -17,7 +17,7 @@ function TimeDisplay() {
     currentTime()
     setInterval(() => {
       currentTime()
-    }, 60000);
+    }, 30000);
     return () => {
       clearInterval()
     }
@@ -27,7 +27,4 @@ function TimeDisplay() {
     <div>{date}&nbsp;&nbsp;&nbsp;{time}</div>
   )
 }
-
-
-
 export default TimeDisplay

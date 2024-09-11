@@ -34,7 +34,7 @@ function App() {
         <Header />
         <MainRoutes />
         <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </>
   ) : null;
