@@ -18,7 +18,7 @@ function ToggleButton() {
                         className='sr-only'
                     />
                     <div
-                        className={`box block border-2 border-gray-300 h-6 w-12 rounded-full ${isChecked ? 'bg-purple-700' : 'bg-orange-100'
+                        className={`box block border-2 border-gray-300 h-6 w-12 rounded-full ${isChecked ? 'bg-purple-700' : 'bg-zinc-300'
                             }`}
                     ></div>
                     <div

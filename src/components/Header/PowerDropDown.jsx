@@ -2,14 +2,21 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import ToggleButton from '../utilities/ToggleButton';
 
 // icons
+
+import { IoLockClosedSharp } from "react-icons/io5";
+import { MdOutlineSettings } from "react-icons/md";
 import { HiSpeakerWave } from "react-icons/hi2";
 import { IoIosPower } from "react-icons/io";
 import { PiNetworkFill } from "react-icons/pi";
 import { MdBrightnessMedium } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
+import { LuNetwork } from "react-icons/lu";
+import { GoTriangleRight } from "react-icons/go";
 
 export default function PowerDropDown() {
+
+    const accessItems = ["High contrast", "Zoom", "Large Text", "Screen reader", "Screen Keyboard", "Visual Alert", "Sticky Keys", "Slow Keys", "Bounce Keys", "Mouse Keys"]
     return (
 
         <>
@@ -24,71 +31,17 @@ export default function PowerDropDown() {
 
                 <MenuItems
                     transition
-                    className="absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                    className="absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in "
                 >
-                    <div className="p-4">
-                        <MenuItem >
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>High contrast</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Zoom</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Large Text</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Screen reader</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Screen Keyboard</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Visual Alert</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Sticky Keys</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Slow Keys</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Bounce Keys</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-                        <MenuItem>
-                            <div className='grid grid-cols-4 p-1 '>
-                                <div className='col-span-3 '>Mouse Keys</div>
-                                <div className='col-span-1'><ToggleButton /></div>
-                            </div>
-                        </MenuItem>
-
-                        
+                    <div className="py-4">
+                        {accessItems.map((item) => (
+                            <MenuItem className="hover:bg-zinc-200">
+                                <div className='grid grid-cols-4 px-4 p-1 '>
+                                    <div className='col-span-3 text-gray-700'>{item}</div>
+                                    <div className='col-span-1'><ToggleButton /></div>
+                                </div>
+                            </MenuItem>
+                        ))}
                     </div>
                 </MenuItems>
             </Menu>
@@ -97,7 +50,7 @@ export default function PowerDropDown() {
 
 
 
-
+            {/*  #########################  power ###########################      */}
 
 
 
@@ -112,51 +65,63 @@ export default function PowerDropDown() {
                         <GoTriangleDown />
                     </MenuButton>
                 </div>
-
                 <MenuItems
                     transition
-                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                    className="absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                 >
-                    <div className="py-1">
-                        <MenuItem>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                            >
-                                Account settings
-                            </a>
+                    <div className="py-4">
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-2 '><HiSpeakerWave /></div>
+                                <div className='col-span-10'>
+                                    <input type="range" min={0} max="100" className="range w-full" />
+                                </div>
+
+                            </div>
                         </MenuItem>
-                        <MenuItem>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                            >
-                                Support
-                            </a>
+
+                        <div className='flex justify-center'><hr className='w-40 my-2' /></div>
+
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-1 '><PiNetworkFill /></div>
+                                <div className='col-span-10 pl-2'>Wired Connected</div>
+                                <div className='col-span-1'><GoTriangleRight /></div>
+                            </div>
                         </MenuItem>
-                        <MenuItem>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                            >
-                                License
-                            </a>
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-1 '><MdBrightnessMedium /></div>
+                                <div className='col-span-10 pl-2'>Night Light On</div>
+                                <div className='col-span-1'><GoTriangleRight /></div>
+                            </div>
                         </MenuItem>
-                        <form action="#" method="POST">
-                            <MenuItem>
-                                <button
-                                    type="submit"
-                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                                >
-                                    Sign out
-                                </button>
-                            </MenuItem>
-                        </form>
+                        <div className='flex justify-center'><hr className='w-40 my-2' /></div>
+
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-1 '><MdOutlineSettings /></div>
+                                <div className='col-span-10 pl-2'>Setting</div>
+                            </div>
+                        </MenuItem>
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-1 '><IoLockClosedSharp /></div>
+                                <div className='col-span-10 pl-2'>Lock</div>
+                            </div>
+                        </MenuItem>
+                        <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='col-span-1 '><IoIosPower /></div>
+                                <div className='col-span-10 pl-2'>Power Off / Log Out</div>
+                                <div className='col-span-1'><GoTriangleRight /></div>
+                            </div>
+                        </MenuItem>
+
+
                     </div>
                 </MenuItems>
             </Menu>
-
         </>
-
     )
 }

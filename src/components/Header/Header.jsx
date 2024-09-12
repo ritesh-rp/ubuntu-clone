@@ -20,7 +20,6 @@ import { MdOutlineAccessibilityNew } from "react-icons/md";
 
 
 
-
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
   const dispatch = useDispatch()
@@ -70,7 +69,7 @@ function Header() {
 
 
 
-    
+
     <div className='w-full py-3 shadow'>
       <header>
         <nav className="w-full bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
