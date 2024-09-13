@@ -1,23 +1,29 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import conf from '../conf/config';
 import { Client, Account, ID } from "appwrite";
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/authSlice';
 
 class AuthService {
+
     client = new Client()
     account;
     constructor() {
         this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
+        console.log("auth account is", this.account)
         this.account = new Account(this.client)
+        console.log("auth account is", this.account)
     }
 
-    async createAccount(email, password ,name) {
+    async createAccount(email, password, name) {
         try {
+            console.log("creating account", email, password, name)
             const userAccount = await this.account.create(
                 ID.unique(),
                 email,
                 password,
                 name
+                // ID.unique(),"abcd@abc.com","abcddf3142"
             );
             if (userAccount) {
                 this.logIn(email, password)
@@ -31,9 +37,9 @@ class AuthService {
         }
     }
 
-    async logIn(email,password) {
+    async logIn(email, password) {
         try {
-            return await this.account.createEmailPasswordSession(email,password);
+            return await this.account.createEmailPasswordSession(email, password);
         }
         catch (error) {
             console.log(error);
@@ -42,7 +48,6 @@ class AuthService {
     }
 
     async getCurrentUser() {
-        // Assuming Appwrite SDK is initialized
         try {
             return await this.account.get();
         } catch (error) {
@@ -52,13 +57,17 @@ class AuthService {
     }
 
 
-    async logOut(){
+    async logOut() {
         try {
-            console.log("looggiiing out")
-            return await this.account.deleteSessions();
+            const user = await this.account.get();
+            if (user.$id) {
+                await this.account.deleteSessions();
+            } else {
+                console.log("User is not authenticated");
             }
-        
+        }
         catch (error) {
+            console.log("logoutError.......", error);
             throw error
         }
     }
