@@ -10,12 +10,19 @@ import { Header, Footer } from './components'
 import { BrowserRouter, Outlet } from 'react-router-dom'
 import MainRoutes from './components/Routes/MainRoutes'
 import Login from './components/Login'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+
+
 
 
 function App() {
   const [loading, setLoading] = useState(true)
   const authStatus = useSelector((state) => state.auth.status)
   const dispatch = useDispatch()
+  const [animationParent] = useAutoAnimate()
+
+  // const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
+
 
   // useEffect(() => {
   //   authService.getCurrentUser()
@@ -33,16 +40,18 @@ function App() {
 
   return (
     <BrowserRouter>
+    <div ref={animationParent}>
       <Header />
       {!authStatus ? (
         <Login />
       ) : (
-        <>
+        < >
           <MainRoutes />
           <Outlet />
           <Footer />
         </>
       )}
+      </div>
     </BrowserRouter>
   );
 

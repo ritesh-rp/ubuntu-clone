@@ -6,6 +6,7 @@ import {  useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
+
 function SignUp() {
     const dispatch = useDispatch()
     const navigate = useNavigate()

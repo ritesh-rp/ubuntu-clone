@@ -27,6 +27,10 @@ export default function PowerDropDown() {
     return (
 
         <>
+
+
+                    {/*  #########################  Accessibility ###########################      */}
+
             <Menu as="div" className="relative inline-block text-left">
                 <div>
                     <MenuButton className="text-white flex items-center">
@@ -42,7 +46,7 @@ export default function PowerDropDown() {
                 >
                     <div className="py-4">
                         {accessItems.map((item,index) => (
-                            <MenuItem className="hover:bg-zinc-200" key={index}>
+                            <MenuItem className="hover:bg-zinc-200 cursor-default" key={index}>
                                 <div className='grid grid-cols-4 px-4 p-1 '>
                                     <div className='col-span-3 text-gray-700'>{item}</div>
                                     <div className='col-span-1'><ToggleButton /></div>
@@ -58,7 +62,6 @@ export default function PowerDropDown() {
 
 
             {/*  #########################  power ###########################      */}
-
 
 
 
@@ -91,22 +94,22 @@ export default function PowerDropDown() {
 
 
                         <div onClick={() => { toggleAccordion(1) }}>
-                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                            <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center cursor-default hover:bg-zinc-200 text-gray-700'>
                                 <div className='col-span-1 '><PiNetworkFill /></div>
                                 <div className='col-span-10 pl-2'>Wired Connected</div>
                                 <div className='col-span-1' id="arrow-icon-1"><GoTriangleRight /></div>
                             </div>
                         </div>
-                        <div class="hidden" id="accordion-content-1">
+                        <div className="hidden" id="accordion-content-1">
                             <div className='flex justify-center'><hr className='w-full' /></div>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Turn Off</div>
                                 </div>
                             </MenuItem>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Wired Setting</div>
                                 </div>
@@ -118,28 +121,28 @@ export default function PowerDropDown() {
 
 
                         <div onClick={() => { toggleAccordion(2) }}>
-                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                            <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                 <div className='col-span-1 '><MdBrightnessMedium /></div>
                                 <div className='col-span-10 pl-2'>Night Light On</div>
                                 <div className='col-span-1' id="arrow-icon-2"><GoTriangleRight /></div>
                             </div>
                         </div>
-                        <div class="hidden" id="accordion-content-2">
+                        <div className="hidden" id="accordion-content-2">
                             <div className='flex justify-center'><hr className='w-full' /></div>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Disable Until Tomorrow</div>
                                 </div>
                             </MenuItem>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Turn Off</div>
                                 </div>
                             </MenuItem>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Display Settings</div>
                                 </div>
@@ -151,13 +154,13 @@ export default function PowerDropDown() {
                         <div className='flex justify-center'><hr className='w-40 my-2' /></div>
 
                         <MenuItem onClick={(e) => { e.preventDefault() }} >
-                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                            <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                 <div className='col-span-1 '><MdOutlineSettings /></div>
                                 <div className='col-span-10 pl-2'>Setting</div>
                             </div>
                         </MenuItem>
                         <MenuItem onClick={(e) => { e.preventDefault() }} >
-                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                            <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                 <div className='col-span-1 '><IoLockClosedSharp /></div>
                                 <div className='col-span-10 pl-2'>Lock</div>
                             </div>
@@ -167,28 +170,28 @@ export default function PowerDropDown() {
 
 
                         <div onClick={() => { toggleAccordion(3) }}>
-                            <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                            <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                 <div className='col-span-1 '><IoIosPower /></div>
                                 <div className='col-span-10 pl-2'>Power Off / Log Out</div>
                                 <div className='col-span-1' id="arrow-icon-3"><GoTriangleRight /></div>
                             </div>
                         </div>
-                        <div class="hidden" id="accordion-content-3">
+                        <div className="hidden" id="accordion-content-3">
                             <div className='flex justify-center'><hr className='w-full' /></div>
                             <MenuItem onClick={(e) => { e.preventDefault();authService.logOut();dispatch(logout())}} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Log Out</div>
                                 </div>
                             </MenuItem>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Suspend</div>
                                 </div>
                             </MenuItem>
                             <MenuItem onClick={(e) => { e.preventDefault() }} >
-                                <div className='grid grid-cols-12 px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
+                                <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Power Off...</div>
                                 </div>
