@@ -25,7 +25,9 @@ function Login() {
     const dispatch = useDispatch()
     const [error, setError] = useState("")
     const [errAnimate, setErrAnimate] = useState(false)
-    const authUser = useSelector(state => state.auth.status)
+    // const authUser = useSelector(state => state.auth.status)
+    const authUser = sessionStorage.getItem("userData")
+    
 
     const login = async (e) => {
         e.preventDefault()
@@ -34,11 +36,13 @@ function Login() {
         setErrAnimate(false)
         try {
             const session = await authService.logIn(email, password)
+            console.log("object---------,", session)
             if (session) {
                 const userData = await authService.getCurrentUser()
                 console.log("this is the current user...........", userData);
                 if (userData) {
                     dispatch(authlogin(userData))
+                    sessionStorage.setItem("userData", JSON.stringify(userData.status))
                     navigate("/")
                 }
             }

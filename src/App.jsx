@@ -39,20 +39,14 @@ function App() {
 
 
   return (
-    <BrowserRouter>
     <div ref={animationParent}>
-      <Header />
-      {!authStatus ? (
-        <Login />
-      ) : (
-        < >
-          <MainRoutes />
-          <Outlet />
-          <Footer />
-        </>
-      )}
+        <BrowserRouter>
+        <Header />
+        <MainRoutes />
+        <Outlet />
+        <Footer />
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
   );
 
 }

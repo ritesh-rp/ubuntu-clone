@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import Login from "../Login";
 
 function Footer() {
-    const authUser = useSelector((state) => state.auth.status)
+    // const authUser = useSelector((state) => state.auth.status)
+    const authUser = sessionStorage.getItem("userData")
+
 
     return authUser ?
         <footer className=" w-full h-11 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">

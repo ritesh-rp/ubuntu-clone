@@ -21,9 +21,10 @@ import { MdOutlineAccessibilityNew } from "react-icons/md";
 
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const authStatus = sessionStorage.getItem("userData")
+  // const authStatus = useSelector((state) => state.auth.status)
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
   // const HandleLOgOut = async () => {
   //   console.log("logout");
