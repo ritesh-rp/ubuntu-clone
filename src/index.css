@@ -9,3 +9,8 @@ body {
     font-size: 15px;
     font-style: normal;
 }
+
+body::-webkit-scrollbar, .allApps::-webkit-scrollbar {
+    display: none;
+}
+
