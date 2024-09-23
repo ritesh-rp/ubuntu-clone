@@ -5,11 +5,13 @@ import Login from "../Login";
 import { Navigate } from "react-router-dom";
 import ListApps from "../ListApps";
 import { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 function Footer() {
     // const authUser = useSelector((state) => state.auth.status)
     const authUser = sessionStorage.getItem("userData")
     const [toggleAllApps, setToggleAllApps] = useState(true)
+    const [parentAnimate] = useAutoAnimate()
 
     const navigate = useNavigate()
 
@@ -25,14 +27,10 @@ function Footer() {
                 </div>
             </div>
             <div>
-                <div className="p-2 rounded-md hover:bg-zinc-700 mx-2" onClick={() => {
-                    if (toggleAllApps) {
-                        setToggleAllApps(!toggleAllApps);
-                        navigate('/listapps');
-                    } else {
-                        setToggleAllApps(!toggleAllApps);
-                        navigate('/');
-                    }
+                <div ref={parentAnimate} className="p-2 rounded-md hover:bg-zinc-700 mx-2" onClick={() => {
+                    setToggleAllApps(!toggleAllApps);
+                    navigate(toggleAllApps ? '/listapps' : '/');
+
                 }}>
                     <img src="https://i.postimg.cc/7LsMvj2H/GO5ql-Aw-Xne1z8-Fm-T0vr-L-transformed.png" className="h-7" alt="na" />
                 </div>

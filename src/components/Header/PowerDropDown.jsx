@@ -15,9 +15,11 @@ import { GoTriangleDown } from "react-icons/go";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
 import { LuNetwork } from "react-icons/lu";
 import { GoTriangleRight } from "react-icons/go";
+import { useNavigate } from 'react-router-dom';
 
 export default function PowerDropDown() {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     function toggleAccordion(index) {
         document.getElementById(`accordion-content-${index}`).classList.toggle("hidden");
         document.getElementById(`arrow-icon-${index}`).classList.toggle("rotate-90");
@@ -178,7 +180,7 @@ export default function PowerDropDown() {
                         </div>
                         <div className="hidden" id="accordion-content-3">
                             <div className='flex justify-center'><hr className='w-full' /></div>
-                            <MenuItem onClick={(e) => { e.preventDefault();authService.logOut();dispatch(logout())}} >
+                            <MenuItem onClick={(e) => { authService.logOut();dispatch(logout());}} >
                                 <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Log Out</div>
@@ -190,7 +192,7 @@ export default function PowerDropDown() {
                                     <div className='col-span-10 pl-2'>Suspend</div>
                                 </div>
                             </MenuItem>
-                            <MenuItem onClick={(e) => { e.preventDefault() }} >
+                            <MenuItem onClick={(e) => { console.log("rITESHHHHHHHHHHHHHHH");}} >
                                 <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Power Off...</div>

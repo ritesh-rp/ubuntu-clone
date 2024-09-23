@@ -22,18 +22,6 @@ import { MdOutlineAccessibilityNew } from "react-icons/md";
 
 function Header() {
   const authStatus = sessionStorage.getItem("userData")
-  // const authStatus = useSelector((state) => state.auth.status)
-  // const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
-  // const HandleLOgOut = async () => {
-  //   console.log("logout");
-  //   const signingOff = await authService.logOut()
-  //   if (signingOff) {
-  //     dispatch(logout())
-  //     navigate("/login")
-  //   }
-  // }
 
   return (
     <div className='w-full'>
@@ -41,7 +29,6 @@ function Header() {
         <nav className="w-full px-3 py-1 bg-white border-gray-200  dark:bg-gray-800">
           <div className="grid grid-cols-12">
             <div className="col-span-5">
-
               {authStatus &&
                 <ul className="flex gap-4 font-medium">
                   <li>
@@ -64,7 +51,6 @@ function Header() {
 
             <div className="col-span-5 flex justify-end items-center">
               <PowerDropDown></PowerDropDown>
-
             </div>
 
           </div>
