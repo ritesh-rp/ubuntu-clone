@@ -24,9 +24,9 @@ function Header() {
   const authStatus = sessionStorage.getItem("userData")
 
   return (
-    <div className='w-full'>
+    <div className='w-full z-50'>
       <header>
-        <nav className="w-full px-3 py-1 bg-white border-gray-200  dark:bg-gray-800">
+        <nav className="w-full px-3 py-1 bg-white border-gray-200  dark:bg-gray-900">
           <div className="grid grid-cols-12">
             <div className="col-span-5">
               {authStatus &&

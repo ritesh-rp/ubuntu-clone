@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect,useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FiSearch } from "react-icons/fi";
@@ -5,36 +6,24 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { motion } from 'framer-motion';
 import { randomizer } from '../store/softwareSlice';
 import { useLocation } from 'react-router-dom';
-
-
+import {openapp} from '../store/softwareSlice';
 
 
 
 function ListApps() {
     const [animationParent] = useAutoAnimate()
     const [search,setSearch] = useState()
-
-
     let apps = useSelector((state) => state.softwares)
-    console.log(search,"apps...........",apps)
-    apps = useMemo(() => search?apps.filter(APP => APP.name.toLowerCase().startsWith(search.toLowerCase()), [search]):apps)
+    apps = useMemo(() => search?apps.softwares.filter(APP => APP.name.toLowerCase().startsWith(search.toLowerCase()), [search]):apps)
     const dispatch = useDispatch()
-    const location = useLocation()
     const [showapp, setShowapp] = useState(false)
-
-
-    // useEffect(() => {
-    //     // Reinitialize autoAnimate when route changes
-    //     animationParent(ref.current);
-    // }, [location])
+    const navigate = useNavigate()
 
 
 
-
-
-    const appList = apps.map(app => {
+    const appList = apps.softwares.map(app => {
         return (
-            <div className='w-full flex flex-col items-center justify-center  rounded-lg p-3 m-2 ' key={app.name}>
+            <div className='w-full flex flex-col items-center justify-center  rounded-lg p-3 m-2 ' key={app.name} onClick={()=>{dispatch(openapp(app));navigate('/')}}>
                 <img className="h-[4.2rem]" src={app.icon} alt={app.name} />
                 <h3 className='text-white py-1'>{(app.name).length > 8 ? (app.name).slice(0, 7) + "..." : app.name}</h3>
             </div>
