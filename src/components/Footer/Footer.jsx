@@ -23,7 +23,7 @@ function Footer() {
 
 
     return authUser ?
-        <footer className="z-50 w-full h-14 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">
+        <footer className=" w-full h-14 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">
             <div ref={parentAnimate} className="flex items-center justify-between gap-5 px-2">
 
                 {taskbarApps.map((app)=>(

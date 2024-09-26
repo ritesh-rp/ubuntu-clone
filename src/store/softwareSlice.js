@@ -41,7 +41,7 @@ const initialState =
     name : "Files",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : false,
+    isFavourite : true,
     display : 'block',
     zindx :1,
     icon : "/app/18-37.png"
@@ -158,7 +158,7 @@ const initialState =
     name : "Settings",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : false,
+    isFavourite : true,
     display : 'block',
     zindx :1,
     icon : "/app/23-39.png"
@@ -203,7 +203,7 @@ const initialState =
     name : "Terminal",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : false,
+    isFavourite : true,
     display : 'block',
     zindx :1,
     icon : "/app/26-01.png"
@@ -212,7 +212,7 @@ const initialState =
     name : "Text Editor",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : false,
+    isFavourite : true,
     display : 'block',
     zindx :1,
     icon : "/app/24-02.png"

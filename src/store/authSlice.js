@@ -10,16 +10,12 @@ const authSlice = createSlice({
     initialState,
     reducers:{
         login:(state,action)=>{
-            console.log("state....",state.status)
             state.status = true;
-            console.log("state22....",state.status)
-
             state.userData = action.payload.userData
         },
         logout:(state)=>{
             sessionStorage.clear()
             state.status = false,
-
             state.userData = null
         }
     }
