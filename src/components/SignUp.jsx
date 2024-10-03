@@ -2,7 +2,7 @@ import React from 'react'
 import authService from '../appwrite/auth'
 import { login as authLogin } from '../store/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -33,13 +33,13 @@ function SignUp() {
         }
 
         catch (error) {
-            console.log(authUser,"error......", error)
+            console.log(authUser, "error......", error)
             setError(error)
         }
     }
 
 
-    return authUser? navigate("/"):
+    return authUser ? navigate("/") :
         <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
             <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                 <div
@@ -78,7 +78,6 @@ function SignUp() {
                 </div>
             </div>
         </div>
-    
 }
 
 export default SignUp

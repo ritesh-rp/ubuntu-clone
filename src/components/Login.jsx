@@ -1,11 +1,8 @@
-import { Navigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from "react-hook-form"
 import authService from '../appwrite/auth'
 import { login as authlogin } from '../store/authSlice'
-import { Link } from 'react-router-dom'
 
 // icons
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
@@ -35,11 +32,14 @@ function Login() {
         setError("")
         setErrAnimate(false)
         try {
+            try {
+                await authService.logOut()
+            } catch (error) {
+                console.log("error in logout", error);
+            }
             const session = await authService.logIn(email, password)
-            console.log("object---------,", session)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                console.log("this is the current user...........", userData);
                 if (userData) {
                     dispatch(authlogin(userData))
                     sessionStorage.setItem("userData", JSON.stringify(userData.status))

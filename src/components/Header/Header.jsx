@@ -1,22 +1,7 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import Container from '../container/Container'
 import { Link } from 'react-router-dom'
-import authService from '../../appwrite/auth'
-import { logout } from '../../store/authSlice'
 import TimeDisplay from './TimeDisplay'
 import PowerDropDown from './PowerDropDown'
-
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-// icons
-import { HiSpeakerWave } from "react-icons/hi2";
-import { IoIosPower } from "react-icons/io";
-import { PiNetworkFill } from "react-icons/pi";
-import { MdBrightnessMedium } from "react-icons/md";
-import { GoTriangleDown } from "react-icons/go";
-import { MdOutlineAccessibilityNew } from "react-icons/md";
 
 
 

@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect,useMemo } from 'react'
+import React, { useState,useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FiSearch } from "react-icons/fi";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { motion } from 'framer-motion';
 import { randomizer } from '../store/softwareSlice';
-import { useLocation } from 'react-router-dom';
 import {openapp} from '../store/softwareSlice';
 
 

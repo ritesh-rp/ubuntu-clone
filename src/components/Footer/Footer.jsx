@@ -1,9 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../Login";
-import { Navigate } from "react-router-dom";
-import ListApps from "../ListApps";
 import { useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { openapp } from '../../store/softwareSlice';
