@@ -16,13 +16,11 @@ function SignUp() {
     const [password, setPassword] = useState('')
     const authUser = useSelector((state) => state.auth.status)
 
-
     const create = async (e) => {
         try {
             e.preventDefault();
             setError('')
             const userData = await authService.createAccount(email, password, name)
-            console.log("userData...........", userData)
             if (userData) {
                 const currentUser = await authService.getCurrentUser()
                 if (currentUser) {
@@ -33,11 +31,9 @@ function SignUp() {
         }
 
         catch (error) {
-            console.log(authUser, "error......", error)
             setError(error)
         }
     }
-
 
     return authUser ? navigate("/") :
         <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">

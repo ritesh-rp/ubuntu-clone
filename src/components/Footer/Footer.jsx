@@ -11,7 +11,6 @@ function Footer() {
     const [parentAnimate] = useAutoAnimate()
     const apps = useSelector(state=> state.softwares)
     const filteredAppList = apps.softwares.filter(app => app.isOpen==true)
-    console.log("filteredAppList",filteredAppList)
     const navigate = useNavigate()
     const taskbarApps = apps.softwares.filter(app => app.isFavourite == true || app.isOpen == true)
     const dispatch =useDispatch()

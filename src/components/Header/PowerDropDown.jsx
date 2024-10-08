@@ -191,7 +191,7 @@ export default function PowerDropDown() {
                                     <div className='col-span-10 pl-2'>Suspend</div>
                                 </div>
                             </MenuItem>
-                            <MenuItem onClick={(e) => { console.log("rITESHHHHHHHHHHHHHHH");}} >
+                            <MenuItem onClick={(e) => { authService.logOut();dispatch(logout());}} >
                                 <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Power Off...</div>

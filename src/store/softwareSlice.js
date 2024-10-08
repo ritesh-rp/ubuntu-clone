@@ -281,7 +281,6 @@ const softwareSlice = createSlice({
         randomizer:(state, action)=>{
             state.sort( () => Math.random() - 0.5);
         }
-
     }
 }
 )

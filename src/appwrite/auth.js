@@ -10,14 +10,11 @@ class AuthService {
     account;
     constructor() {
         this.client.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
-        console.log("auth account is", this.account)
         this.account = new Account(this.client)
-        console.log("auth account is", this.account)
     }
 
     async createAccount(email, password, name) {
         try {
-            console.log("creating account", email, password, name)
             const userAccount = await this.account.create(
                 ID.unique(),
                 email,
