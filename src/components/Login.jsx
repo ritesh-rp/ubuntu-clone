@@ -1,73 +1,78 @@
-import { Navigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from "react-hook-form"
 import authService from '../appwrite/auth'
 import { login as authlogin } from '../store/authSlice'
-import { Link } from 'react-router-dom'
+
+// icons
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { Container } from 'postcss'
+import { BiLoaderCircle } from "react-icons/bi";
+
+
 
 
 
 function Login() {
     const navigate = useNavigate()
+    const [email, setEmail] = useState('ritesh88822@gmail.com')
+    const [loader,setLoader] =useState(false)
+    const [password, setPassword] = useState('')
+    const [showPass, setShowpass] = useState(false)
     const dispatch = useDispatch()
-    const { register, handleSubmit } = useForm()
     const [error, setError] = useState("")
-    const authUser = useSelector(state => state.auth.status)
+    const [errAnimate, setErrAnimate] = useState(false)
+    // const authUser = useSelector(state => state.auth.status)
+    const authUser = sessionStorage.getItem("userData")
+    
 
-    const login = async (e, data) => {
+    const login = async (e) => {
         e.preventDefault()
+        setLoader(true)
         setError("")
+        setErrAnimate(false)
         try {
-            const session = await authService.logIn(data.email, data.password)
+            try {
+                await authService.logOut()
+            } catch (error) {
+                console.log("error in logout", error);
+            }
+            const session = await authService.logIn(email, password)
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if (userData) {
                     dispatch(authlogin(userData))
+                    sessionStorage.setItem("userData", JSON.stringify(userData.status))
                     navigate("/")
                 }
             }
-
         } catch (error) {
             setError(error.message)
+            setErrAnimate(true)
+        }finally{
+            setLoader(false)
         }
     }
-    return authUser? <Navigate to='/'/> : 
-        <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-            <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-                <div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+    return authUser ? navigate('/') :
+            <div className="absolute top-0 left-0 w-full -z-10  backdrop-blur-md flex flex-col justify-center items-center" style={{height:'100vh'}}>
+                <div className='relative flex items-center justify-center flex-col' >
+                    <img className='rounded-full h-28 w-28' src="https://c4.wallpaperflare.com/wallpaper/627/395/613/blue-controller-dualshock-entertainment-wallpaper-preview.jpg" alt="" />
+                    <h1 className='text-white text-3xl pt-3'>Ritesh</h1><br />
                 </div>
-                <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                    <div className="max-w-md mx-auto">
-                        <div>
-                            <h1 className="text-2xl font-semibold">Login</h1>
-                        </div>
-                        {error && <div className='text-red-500'>{error}</div>}
-                        <div className="divide-y divide-gray-200">
-                            <form onSubmit={(e) => { login(e, { email: "ritesh88822@gmail.com", password: "Abcd1234@" }) }}>
-                                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                    <div className="relative">
-                                        <input id="email" name="email" type="text" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" />
-                                        <label htmlFor="email" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
-                                    </div>
-                                    <br />
-                                    <div className="relative">
-                                        <input id="password" name="password" type="password" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
-                                        <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
-                                    </div>
-                                    <Link to="/signup">Don't have account yet? SignUp</Link>
-                                </div>
-                                <div className="relative">
-                                    <button className="bg-cyan-500 text-white rounded-md px-2 py-1">Submit</button>
-                                </div>
-                            </form>
-                        </div>
+                <form onSubmit={login}>
+                    <div className={`relative left-4 flex items-center justify-center ${errAnimate ? 'bounce-animation' : null}`}>
+                        <input type={showPass ? 'text' : 'password'} name="password" onKeyUp={(e) => { setPassword(e.target.value) }} id="password" placeholder='Password' className='p-2  m-2  h-10 w-72 rounded  focus:ring-2 focus:ring-orange-700 focus:outline-none border-orange-700' />
+                        <span onClick={() => { setShowpass(!showPass) }} className='flex'>
+                            {showPass ? <AiOutlineEyeInvisible className='relative  right-9 text-xl font-bold' /> : <AiOutlineEye className='relative  right-9 font-bold text-xl' />}
+                            <div className={`relative ${loader ? 'block' : 'hidden'} animate-spin font-bold text-2xl text-gray-300`}>
+
+                            <BiLoaderCircle  /> 
+                            </div>
+                        <button type="submit" hidden={true} />
+                        </span >
                     </div>
-                </div>
+                </form>
+                {error && <div className="text-white mt-4">{error}</div>}
             </div >
-        </div >
-    
 }
 export default Login;

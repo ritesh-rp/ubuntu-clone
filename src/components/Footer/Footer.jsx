@@ -1,39 +1,45 @@
+import { useNavigate } from 'react-router-dom';
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { openapp } from '../../store/softwareSlice';
 
 function Footer() {
-    const authUser = useSelector((state) => state.auth.status)
+    const authUser = sessionStorage.getItem("userData")
+    const [toggleAllApps, setToggleAllApps] = useState(true)
+    const [parentAnimate] = useAutoAnimate()
+    const apps = useSelector(state=> state.softwares)
+    const filteredAppList = apps.softwares.filter(app => app.isOpen==true)
+    const navigate = useNavigate()
+    const taskbarApps = apps.softwares.filter(app => app.isFavourite == true || app.isOpen == true)
+    const dispatch =useDispatch()
+  
+
+
 
     return authUser ?
-        <footer className="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
-            <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-                <div className="sm:flex sm:items-center sm:justify-between">
-                    <a href="https://flowbite.com/" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-                    </a>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                        <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">About</a>
-                        </li>
-                        <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
-                        </li>
-                        <li>
-                            <a href="#" className="hover:underline">Contact</a>
-                        </li>
-                    </ul>
+        <footer className=" w-full h-14 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">
+            <div ref={parentAnimate} className="flex items-center justify-between gap-5 px-2">
+
+                {taskbarApps.map((app)=>(
+                <div className="p-1  rounded-md hover:bg-zinc-700" onClick={()=>{dispatch(openapp(app))}}>
+                    <img src={app.icon} className="h-11" alt="na" />
                 </div>
-                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
+                ))}
+
+            </div>
+            <div>
+                <div ref={parentAnimate} className="p-2 rounded-md hover:bg-zinc-700 mx-2" onClick={() => {
+                    navigate(toggleAllApps ? '/listapps' : '/');
+                    setToggleAllApps(!toggleAllApps);
+                }}>
+                    <img src="https://i.postimg.cc/7LsMvj2H/GO5ql-Aw-Xne1z8-Fm-T0vr-L-transformed.png" className="h-7" alt="na" />
+                </div>
             </div>
         </footer>
         :
         null
-
 }
 
 export default Footer;
