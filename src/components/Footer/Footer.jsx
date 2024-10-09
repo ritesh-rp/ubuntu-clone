@@ -9,12 +9,10 @@ function Footer() {
     const authUser = sessionStorage.getItem("userData")
     const [toggleAllApps, setToggleAllApps] = useState(true)
     const [parentAnimate] = useAutoAnimate()
-    const apps = useSelector(state=> state.softwares)
-    const filteredAppList = apps.softwares.filter(app => app.isOpen==true)
+    const apps = useSelector(state => state.softwares)
     const navigate = useNavigate()
     const taskbarApps = apps.softwares.filter(app => app.isFavourite == true || app.isOpen == true)
-    const dispatch =useDispatch()
-  
+    const dispatch = useDispatch()
 
 
 
@@ -22,10 +20,10 @@ function Footer() {
         <footer className=" w-full h-14 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">
             <div ref={parentAnimate} className="flex items-center justify-between gap-5 px-2">
 
-                {taskbarApps.map((app)=>(
-                <div className="p-1  rounded-md hover:bg-zinc-700" onClick={()=>{dispatch(openapp(app))}}>
-                    <img src={app.icon} className="h-11" alt="na" />
-                </div>
+                {taskbarApps.map((app) => (
+                    <div key={app.id} className="p-1  rounded-md hover:bg-zinc-700" onClick={() => { dispatch(openapp(app)) }}>
+                        <img src={app.icon} className="h-11" alt="na" />
+                    </div>
                 ))}
 
             </div>

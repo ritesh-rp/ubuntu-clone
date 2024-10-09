@@ -20,7 +20,7 @@ function Home() {
       [appName]: !prevState[appName]
     }))
   }
-
+  
 
   return (
     <div className='w-full' ref={parentAnimate}>
