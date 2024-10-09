@@ -20,6 +20,15 @@ const initialState =
     icon : "/app/18-06.png"
 },
 {
+    name : "Chrome",
+    title: "SoftWare and Updates",
+    isOpen : false,
+    isFavourite : true,
+    display : 'block',
+    zindx :1,
+    icon : "/app/chrome.png"
+},
+{
     name : "Cheese",
     title: "SoftWare and Updates",
     isOpen : false,
@@ -212,7 +221,7 @@ const initialState =
     name : "Text Editor",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : true,
+    isFavourite : false,
     display : 'block',
     zindx :1,
     icon : "/app/24-02.png"
@@ -248,7 +257,7 @@ const initialState =
     name : "Vim",
     title: "SoftWare and Updates",
     isOpen : false,
-    isFavourite : false,
+    isFavourite : true,
     display : 'block',
     zindx :1,
     icon : "/app/24-35.png"

@@ -43,6 +43,7 @@ function Login() {
                 if (userData) {
                     dispatch(authlogin(userData))
                     sessionStorage.setItem("userData", JSON.stringify(userData.status))
+                    console.log(sessionStorage.getItem("userData"));
                     navigate("/")
                 }
             }

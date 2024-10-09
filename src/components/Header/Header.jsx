@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TimeDisplay from './TimeDisplay'
 import PowerDropDown from './PowerDropDown'
-
+import { useSelector } from 'react-redux'
 
 
 function Header() {
-  const authStatus = sessionStorage.getItem("userData")
-
+  const authStatus = useSelector((state) => state.auth.status)
   return (
     <div className='w-full z-[1000]'>
       <header>
@@ -23,21 +22,17 @@ function Header() {
                     <Link to="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Active Apps</Link>
                   </li>
                 </ul>}
-
             </div>
-
             <div className="col-span-2 flex justify-around">
               {authStatus &&
-                <button className='text-white '>
+                <button className='text-white'>
                   <TimeDisplay />
                 </button>
               }
             </div>
-
             <div className="col-span-5 flex justify-end items-center">
               <PowerDropDown></PowerDropDown>
             </div>
-
           </div>
         </nav>
       </header>
