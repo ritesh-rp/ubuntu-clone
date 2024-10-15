@@ -1,5 +1,4 @@
 import React from 'react'
-import authService from '../appwrite/auth'
 import { login as authLogin } from '../store/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'

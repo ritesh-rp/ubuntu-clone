@@ -1,5 +1,5 @@
 import { Client, Account} from 'appwrite';
-import config from './config';
+import config from '../conf/config';
 
 export const client = new Client();
 
