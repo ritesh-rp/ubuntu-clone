@@ -1,22 +1,27 @@
 import { useNavigate } from 'react-router-dom';
-import React from "react";
+import React, {useContext} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { openapp } from '../../store/softwareSlice';
+import { authUserContext } from '../../App'
 
 function Footer() {
-    const authUser = sessionStorage.getItem("userData")
+    // const authUser = sessionStorage.getItem("userData")
+
+    const {loggedInUser, setLoggedInUser} = useContext(authUserContext)
     const [toggleAllApps, setToggleAllApps] = useState(true)
     const [parentAnimate] = useAutoAnimate()
     const apps = useSelector(state => state.softwares)
     const navigate = useNavigate()
     const taskbarApps = apps.softwares.filter(app => app.isFavourite == true || app.isOpen == true)
     const dispatch = useDispatch()
+    const authSession = localStorage.getItem("cookieFallback")
 
 
 
-    return authUser ?
+
+    return loggedInUser ?
         <footer className=" w-full h-14 shadow bg-opacity-45 bg-black fixed bottom-0 flex items-center justify-between">
             <div ref={parentAnimate} className="flex items-center justify-between gap-5 px-2">
 

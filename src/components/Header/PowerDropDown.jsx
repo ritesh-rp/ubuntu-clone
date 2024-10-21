@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import ToggleButton from '../utilities/ToggleButton';
-import authService from '../../appwrite/auth';
-import {login,logout} from '../../store/authSlice'
+import { login, logout } from '../../store/authSlice'
+import {account} from "../../lib/appwrite"
+import { useContext } from 'react';
 // icons
 
 import { IoLockClosedSharp } from "react-icons/io5";
@@ -15,9 +16,11 @@ import { GoTriangleDown } from "react-icons/go";
 import { MdOutlineAccessibilityNew } from "react-icons/md";
 import { GoTriangleRight } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
+import { authUserContext } from '../../App'
 
 export default function PowerDropDown() {
     const dispatch = useDispatch();
+    const {loggedInUser, setLoggedInUser} = useContext(authUserContext)
     const navigate = useNavigate()
     function toggleAccordion(index) {
         document.getElementById(`accordion-content-${index}`).classList.toggle("hidden");
@@ -26,11 +29,8 @@ export default function PowerDropDown() {
 
     const accessItems = ["High contrast", "Zoom", "Large Text", "Screen reader", "Screen Keyboard", "Visual Alert", "Sticky Keys", "Slow Keys", "Bounce Keys", "Mouse Keys"]
     return (
-
         <>
-
-
-                    {/*  #########################  Accessibility ###########################      */}
+            {/*  #########################  Accessibility ###########################      */}
 
             <Menu as="div" className="relative inline-block text-left">
                 <div>
@@ -46,7 +46,7 @@ export default function PowerDropDown() {
                     className="absolute left-1/2 transform -translate-x-1/2 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in "
                 >
                     <div className="py-4">
-                        {accessItems.map((item,index) => (
+                        {accessItems.map((item, index) => (
                             <MenuItem className="hover:bg-zinc-200 cursor-default" key={index}>
                                 <div className='grid grid-cols-4 px-4 p-1 '>
                                     <div className='col-span-3 text-gray-700'>{item}</div>
@@ -179,7 +179,10 @@ export default function PowerDropDown() {
                         </div>
                         <div className="hidden" id="accordion-content-3">
                             <div className='flex justify-center'><hr className='w-full' /></div>
-                            <MenuItem onClick={(e) => { authService.logOut();dispatch(logout());}} >
+                            <MenuItem onClick={async () => {
+                                await account.deleteSession('current');
+                                setLoggedInUser(null);
+                            }} >
                                 <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Log Out</div>
@@ -191,7 +194,7 @@ export default function PowerDropDown() {
                                     <div className='col-span-10 pl-2'>Suspend</div>
                                 </div>
                             </MenuItem>
-                            <MenuItem onClick={(e) => { authService.logOut();dispatch(logout());}} >
+                            <MenuItem onClick={(e) => { authService.logOut(); dispatch(logout()); }} >
                                 <div className='grid grid-cols-12 cursor-default px-7 py-2 items-center hover:bg-zinc-200 text-gray-700'>
                                     <div className='col-span-1 '></div>
                                     <div className='col-span-10 pl-2'>Power Off...</div>
@@ -204,7 +207,7 @@ export default function PowerDropDown() {
 
 
 
-                        
+
                     </div >
 
                 </MenuItems>

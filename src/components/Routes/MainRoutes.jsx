@@ -1,6 +1,5 @@
-import { useSelector } from 'react-redux'
 import React from 'react'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import { Routes,Route } from 'react-router-dom'
 import Login from '../Login' 
 import SignUp from '../SignUp'
 import Home from '../Home/Home'
@@ -8,7 +7,6 @@ import ListApps from '../ListApps'
 import ProtectedRoutes from './ProtectedRoutes'
 
 function MainRoutes() {
-  const authenticated = useSelector((state) => state.auth.status)
   return (
     <Routes>
         <Route path='/login' element={<Login/>}/>

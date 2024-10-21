@@ -12,14 +12,14 @@ function ListApps() {
     const [animationParent] = useAutoAnimate()
     const [search,setSearch] = useState()
     let apps = useSelector((state) => state.softwares)
-    apps = useMemo(() => search?apps.softwares.filter(APP => APP.name.toLowerCase().startsWith(search.toLowerCase()), [search]):apps)
+    apps = useMemo(() => search?apps.softwares.filter(APP => APP.name.toLowerCase().startsWith(search.toLowerCase()), [search]):apps.softwares)
     const dispatch = useDispatch()
     const [showapp, setShowapp] = useState(false)
     const navigate = useNavigate()
 
 
 
-    const appList = apps.softwares.map(app => {
+    const appList = apps.map((app) => {
         return (
             <div className='w-full flex flex-col items-center justify-center  rounded-lg p-3 m-2 ' key={app.name} onClick={()=>{dispatch(openapp(app));navigate('/')}}>
                 <img className="h-[4.2rem]" src={app.icon} alt={app.name} />

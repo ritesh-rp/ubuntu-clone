@@ -1,19 +1,22 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import { Link } from 'react-router-dom'
 import TimeDisplay from './TimeDisplay'
 import PowerDropDown from './PowerDropDown'
-import { useSelector } from 'react-redux'
+import { authUserContext } from '../../App'
 
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status)
+
+
+  const {loggedInUser, setLoggedInUser} = useContext(authUserContext)
+
   return (
     <div className='w-full z-[1000]'>
       <header>
         <nav className="w-full px-3 py-1 bg-white border-gray-200  dark:bg-gray-900">
           <div className="grid grid-cols-12">
             <div className="col-span-5">
-              {authStatus &&
+              {loggedInUser &&
                 <ul className="flex gap-4 font-medium">
                   <li>
                     <Link to="#" className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:p-0 dark:text-white" aria-current="page">Activities</Link>
@@ -24,7 +27,7 @@ function Header() {
                 </ul>}
             </div>
             <div className="col-span-2 flex justify-around">
-              {authStatus &&
+              {loggedInUser &&
                 <button className='text-white'>
                   <TimeDisplay />
                 </button>

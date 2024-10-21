@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {Navigate, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import authService from '../appwrite/auth'
-import { login as authlogin } from '../store/authSlice'
+import { useContext } from 'react'
+import { authUserContext } from '../App'
+import { account } from '../lib/appwrite'
+
 
 // icons
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { Container } from 'postcss'
 import { BiLoaderCircle } from "react-icons/bi";
 
 
@@ -24,43 +25,35 @@ function Login() {
     const [errAnimate, setErrAnimate] = useState(false)
     // const authUser = useSelector(state => state.auth.status)
     const authUser = sessionStorage.getItem("userData")
+    const {loggedInUser, setLoggedInUser} = useContext(authUserContext)
+    // const authSession = localStorage.getItem("cookieFallback")
     
-
-    const login = async (e) => {
+  
+  async function loginHandler(e) {
+    try{
         e.preventDefault()
         setLoader(true)
-        setError("")
-        setErrAnimate(false)
-        try {
-            try {
-                await authService.logOut()
-            } catch (error) {
-                console.log("error in logout", error);
-            }
-            const session = await authService.logIn(email, password)
-            if (session) {
-                const userData = await authService.getCurrentUser()
-                if (userData) {
-                    dispatch(authlogin(userData))
-                    sessionStorage.setItem("userData", JSON.stringify(userData.status))
-                    console.log(sessionStorage.getItem("userData"));
-                    navigate("/")
-                }
-            }
-        } catch (error) {
-            setError(error.message)
-            setErrAnimate(true)
-        }finally{
-            setLoader(false)
-        }
+        await account.createEmailPasswordSession(email, password);
+        const user = await account.get()
+        setLoggedInUser(user)
+        setLoader(false)
+        navigate("/");
     }
-    return authUser ? navigate('/') :
+    catch(err){
+        console.log(err.message) 
+        setError(err.message)  
+        setLoader(false)
+    
+
+
+  }}
+    return (loggedInUser?<Navigate to="/" />:
             <div className="absolute top-0 left-0 w-full -z-10  backdrop-blur-md flex flex-col justify-center items-center" style={{height:'100vh'}}>
                 <div className='relative flex items-center justify-center flex-col' >
                     <img className='rounded-full h-28 w-28' src="https://c4.wallpaperflare.com/wallpaper/627/395/613/blue-controller-dualshock-entertainment-wallpaper-preview.jpg" alt="" />
                     <h1 className='text-white text-3xl pt-3'>Ritesh</h1><br />
                 </div>
-                <form onSubmit={login}>
+                <form onSubmit={(e) => {loginHandler(e)}}>
                     <div className={`relative left-4 flex items-center justify-center ${errAnimate ? 'bounce-animation' : null}`}>
                         <input type={showPass ? 'text' : 'password'} name="password" onKeyUp={(e) => { setPassword(e.target.value) }} id="password" placeholder='Password' className='p-2  m-2  h-10 w-72 rounded  focus:ring-2 focus:ring-orange-700 focus:outline-none border-orange-700' />
                         <span onClick={() => { setShowpass(!showPass) }} className='flex'>
@@ -74,6 +67,6 @@ function Login() {
                     </div>
                 </form>
                 {error && <div className="text-white mt-4">{error}</div>}
-            </div >
+            </div >)
 }
 export default Login;
